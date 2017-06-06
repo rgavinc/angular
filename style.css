@@ -1,0 +1,16 @@
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+.good-input{
+    background-color: green;
+}
+
+.bad-input{
+    background-color: red;
+}

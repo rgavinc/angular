@@ -27,12 +27,30 @@ System.register(['angular2/core', './course.service', './auto-grow.directive'], 
             CoursesComponent = (function () {
                 function CoursesComponent(courseService) {
                     this.title = "The title of courses page";
+                    this.wordTest = "Can you type this?";
                     this.courses = courseService.getCourses();
                 }
+                CoursesComponent.prototype.onKeyUp = function ($event) {
+                    var target = $event.target;
+                    target.focus();
+                    var input = $event.target.value;
+                    var stringSize = input.length;
+                    if (input.substring(0, stringSize) === this.wordTest.substring(0, stringSize)) {
+                        if (!target.classList.contains('good-input')) {
+                            target.classList.remove('bad-input');
+                            target.classList.add('good-input');
+                        }
+                    }
+                    else {
+                        if (!target.classList.contains('bad-input'))
+                            target.classList.remove('good-input');
+                        target.classList.add('bad-input');
+                    }
+                };
                 CoursesComponent = __decorate([
                     core_1.Component({
                         selector: 'courses',
-                        template: "\n    <h2>Courses</h2>\n    {{title}}\n    <input type=\"text\" focus=\"true\" autoGrow />\n    <ul>\n        <li *ngFor=\"#course of courses\">\n        {{ course }}\n        </li>\n    </ul>\n    ",
+                        template: "\n    <h2>Courses</h2>\n    {{title}}<br>\n    {{wordTest}}<br>\n    <input type=\"text\" autofocus (keyup)=\"onKeyUp($event)\" autoGrow />\n    Preview: {{inputVal}}\n    <ul>\n        <li *ngFor=\"#course of courses\">\n        {{ course }}\n        </li>\n    </ul>\n    ",
                         providers: [course_service_1.CourseService],
                         directives: [auto_grow_directive_1.AutoGrowDirective]
                     }), 

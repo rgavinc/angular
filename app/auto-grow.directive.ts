@@ -11,7 +11,6 @@ import {Directive, ElementRef, Renderer} from 'angular2/core'
 export class AutoGrowDirective {
     _el: ElementRef;
     constructor(private el: ElementRef, private renderer: Renderer){
-        this.renderer.setElementStyle(this.el.nativeElement, 'background-color', 'red');
 
     }
 

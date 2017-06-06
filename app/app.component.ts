@@ -4,7 +4,7 @@ import {AuthorsComponent} from './authors.component';
 
 @Component({
     selector: 'my-app',
-    template: `<h1>Hello World</h1>
+    template: `<h1>Typing Test</h1>
     <courses></courses>
     <authors></authors>`,
     directives: [CoursesComponent, AuthorsComponent]

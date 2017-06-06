@@ -22,7 +22,6 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 function AutoGrowDirective(el, renderer) {
                     this.el = el;
                     this.renderer = renderer;
-                    this.renderer.setElementStyle(this.el.nativeElement, 'background-color', 'red');
                 }
                 AutoGrowDirective.prototype.onFocus = function () {
                     this.renderer.setElementStyle(this.el.nativeElement, 'width', '200px');
