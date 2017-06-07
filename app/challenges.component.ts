@@ -1,34 +1,31 @@
 import { Component } from 'angular2/core'
-import { CourseService } from './course.service'
+import { ChallengeService } from './challenge.service'
 import { AutoGrowDirective } from './auto-grow.directive'
 import { FocusModule } from 'angular2-focus';
 
 @Component({
-    selector: 'courses',
+    selector: 'challenge',
     template: `
-    <h2>Courses</h2>
+    <h2>Choose your challenge</h2>
     {{title}}<br>
     {{wordTest}}<br>
     <input type="text" autofocus (keyup)="onKeyUp($event)" autoGrow />
-    Preview: {{inputVal}}
-    <ul>
-        <li *ngFor="#course of courses">
-        {{ course }}
-        </li>
-    </ul>
+    <section>
+        <div class="challenge choose" *ngFor="#challenge of challenges" (click)="onClick($event)" id={{challenge}}></div>
+    </section>
     `,
-    providers: [CourseService],
+    providers: [ChallengeService],
     directives: [AutoGrowDirective]
 })
 
 
-export class CoursesComponent {
-    title = "The title of courses page";
+export class ChallengesComponent {
+    title = "The title of challenges page";
     wordTest = "Can you type this?";
-    courses;
+    challenges;
 
-    constructor(courseService: CourseService) {
-        this.courses = courseService.getCourses();
+    constructor(challengeService: ChallengeService) {
+        this.challenges = challengeService.getChallenges();
 
     }
 
@@ -48,4 +45,18 @@ export class CoursesComponent {
                 target.classList.add('bad-input');
         }
     }
-}
+
+    onClick($event) {
+        let target = $event.target;
+        target.classList.remove("choose");
+        let unwanted = document.querySelectorAll(".challenge:not(:hover)");
+        for (let i = 0; i < unwanted.length;i++){
+            unwanted[i].style.height = 0;
+            unwanted[i].style.width = 0;
+            unwanted[i].style.border = 0;
+            unwanted[i].style.margin = 0;
+
+        }
+
+        }
+    }

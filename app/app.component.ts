@@ -1,12 +1,12 @@
 import {Component} from 'angular2/core';
-import {CoursesComponent} from './courses.component';
+import {ChallengesComponent} from './challenges.component';
 import {AuthorsComponent} from './authors.component';
 
 @Component({
     selector: 'my-app',
     template: `<h1>Typing Test</h1>
-    <courses></courses>
+    <challenge></challenge>
     <authors></authors>`,
-    directives: [CoursesComponent, AuthorsComponent]
+    directives: [ChallengesComponent, AuthorsComponent]
 })
 export class AppComponent { }
